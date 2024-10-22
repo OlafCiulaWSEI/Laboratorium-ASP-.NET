@@ -6,11 +6,12 @@ namespace WebApplication1.Controllers;
 public class ContactController : Controller
 {
     static private Dictionary<int, ContactModel> _contacts= new Dictionary<int, ContactModel>();
-    
+
+    private static int currentID = 0;
     // Lista kontaktów
     public IActionResult Index()
     {
-        return View();
+        return View(_contacts);
     }
 
     public ActionResult Add()
@@ -24,9 +25,10 @@ public class ContactController : Controller
         if (!ModelState.IsValid)
         {
             return View(model);
-            
         }
 
-        return View("Index");
+        model.Id = ++currentID;
+        _contacts.Add(model.Id, model);
+        return View("Index", _contacts);
     }
 }
