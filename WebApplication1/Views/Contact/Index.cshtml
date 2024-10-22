@@ -1,0 +1,10 @@
+@model Dictionary<int, WebApplication1.Models.ContactModel>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Kontakty</h2>
+<a class="btn btn-primary" asp-action="Add" asp-controller="Contact">Dodaj kontakt</a>
+<table class="table"></table>
